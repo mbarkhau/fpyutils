@@ -1,0 +1,307 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Developer Interface &#8212; fpyutils 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing" href="test.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-fpyutils">
+<span id="developer-interface"></span><h1>Developer Interface<a class="headerlink" href="#module-fpyutils" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-interface">
+<h2>Main Interface<a class="headerlink" href="#main-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="fpyutils.get_line_matches">
+<code class="descclassname">fpyutils.</code><code class="descname">get_line_matches</code><span class="sig-paren">(</span><em>input_file</em>, <em>pattern</em>, <em>max_occurrencies</em>, <em>loose_matching=True</em><span class="sig-paren">)</span><a class="headerlink" href="#fpyutils.get_line_matches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the line numbers of matched patterns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) – the file that needs to be read.</li>
+<li><strong>pattern</strong> (<em>str</em>) – the pattern that needs to be searched.</li>
+<li><strong>max_occurrencies</strong> (<em>int</em><em> or </em><em>float</em>) – the maximum number of expected occurrencies.</li>
+<li><strong>loose_matching</strong> (<em>bool</em>) – ignore leading and trailing whitespace
+characters for both pattern and matched strings. Defaults to <code class="docutils literal"><span class="pre">True</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dictionary where each key corresponds to the number of
+occurrency and each value to the matched line number.
+If no match was found for that particular occurrency, the key is not
+set.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">LineOutOfFileBoundsError or the built-in exceptions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The parameter max_occurrencies must be greater than
+zero.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To get all occurrencies of a pattern, the parameter
+max_occurrencies must be set to <code class="docutils literal"><span class="pre">float('inf')</span></code>.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&quot;This is\nfoo.\nfoo\nThis is\nnot\nbar.\nAnd it&#39;s\n    foo\n\nBye!\n&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fpyutils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fpyutils</span><span class="o">.</span><span class="n">get_line_matches</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">,</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">{1: 3, 2: 8}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fpyutils.insert_string_at_line">
+<code class="descclassname">fpyutils.</code><code class="descname">insert_string_at_line</code><span class="sig-paren">(</span><em>input_file</em>, <em>string_to_be_inserted</em>, <em>line_number</em>, <em>output_file</em><span class="sig-paren">)</span><a class="headerlink" href="#fpyutils.insert_string_at_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a string at the specified line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) – the file that needs to be read.</li>
+<li><strong>string_to_be_inserted</strong> (<em>str</em>) – the string that needs to be added.</li>
+<li><strong>line_number</strong> (<em>int</em>) – the line number on which to append the string.</li>
+<li><strong>output_file</strong> (<em>str</em>) – the file that needs to be written with the new
+content.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">LineOutOfFileBoundsError or the built-in exceptions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The parameter line_number must be greater than
+zero.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">string_to_be_inserted will be appended to the selected line.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&#39;This is\nfoo.\nThis is\nnot\nbar.\n\nBye!\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fpyutils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fpyutils</span><span class="o">.</span><span class="n">insert_string_at_line</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;bar.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;bar.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&#39;This is\nfoo.\nbarThis is\nnot\nbar.\n\nBye!\n&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fpyutils.remove_line_interval">
+<code class="descclassname">fpyutils.</code><code class="descname">remove_line_interval</code><span class="sig-paren">(</span><em>input_file</em>, <em>line_from</em>, <em>line_to</em>, <em>output_file</em><span class="sig-paren">)</span><a class="headerlink" href="#fpyutils.remove_line_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a line interval.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) – the file that needs to be read.</li>
+<li><strong>line_from</strong> (<em>int</em>) – the line number from which start deleting.</li>
+<li><strong>line_to</strong> – the line number to which stop deleting.</li>
+<li><strong>output_file</strong> (<em>str</em>) – the file that needs to be written without the
+selected lines.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">LineOutOfFileBoundsError or the built-in exceptions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The parameters line_number must be greater than
+zero.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">string_to_be_inserted will be appended to the selected line.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&#39;This is\nfoo.\nThis is\nnot\nbar.\n\nBye!\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fpyutils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fpyutils</span><span class="o">.</span><span class="n">insert_string_at_line</span><span class="p">(</span><span class="s1">&#39;foo.txt&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;bar.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;bar.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&#39;This is\nfoo.\nbarThis is\nnot\nbar.\n\nBye!\n&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="fpyutils.LineOutOfFileBoundsError">
+<em class="property">exception </em><code class="descclassname">fpyutils.</code><code class="descname">LineOutOfFileBoundsError</code><a class="headerlink" href="#fpyutils.LineOutOfFileBoundsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Line out of bounds.</p>
+<p>Raises an exception if there was an attempt to access a non-existing line
+in a file.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">fpyutils</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=frnmst&repo=fputils&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-interface">Main Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exceptions">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pep.html">Python PEP compliancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright_license.html">Copyright and License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="test.html" title="next chapter">Testing</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Franco Masotti.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/frnmst/fputils" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
