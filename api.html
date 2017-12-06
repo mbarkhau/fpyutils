@@ -168,7 +168,7 @@ zero.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>input_file</strong> (<em>str</em>) – the file that needs to be read.</li>
 <li><strong>line_from</strong> (<em>int</em>) – the line number from which start deleting.</li>
-<li><strong>line_to</strong> – the line number to which stop deleting.</li>
+<li><strong>line_to</strong> (<em>int</em>) – the line number to which stop deleting.</li>
 <li><strong>output_file</strong> (<em>str</em>) – the file that needs to be written without the
 selected lines.</li>
 </ul>
@@ -184,12 +184,8 @@ selected lines.</li>
 </table>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">The parameters line_number must be greater than
+<p class="last">The parameters line_from and line_to must be greater than
 zero.</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">string_to_be_inserted will be appended to the selected line.</p>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
