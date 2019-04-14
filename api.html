@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Developer Interface &#8212; fpyutils 1.0.0 documentation</title>
+    <title>Developer Interface &#8212; fpyutils 1.1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -74,6 +74,10 @@ pattern is at line y then: x[1] = y.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Line numbers start from <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -87,7 +91,8 @@ pattern is at line y then: x[1] = y.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>input_file</strong> (<em>str</em>) – the file that needs to be read.</li>
 <li><strong>string_to_be_inserted</strong> (<em>str</em>) – the string that needs to be added.</li>
-<li><strong>line_number</strong> (<em>int</em>) – the line number on which to append the string.</li>
+<li><strong>put_at_line_number</strong> – the line number on which to append the
+string.</li>
 <li><strong>output_file</strong> (<em>str</em>) – the file that needs to be written with the new
 content.</li>
 <li><strong>append</strong> (<em>bool</em>) – decides whether to append or prepend the string at the
@@ -106,6 +111,10 @@ input_file. Defaults to <code class="docutils literal notranslate"><span class="
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Line numbers start from <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -128,11 +137,15 @@ selected lines.</li>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">LineOutOfFileBoundsError or the built-in exceptions.</p>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">LineOutOfFileBoundsError or a built-in exception.</p>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Line numbers start from <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">It is possible to remove a single line only. This happens when
@@ -149,6 +162,12 @@ the parameters delete_line_from and delete_line_to are equal.</p>
 <dd><p>Line out of bounds.</p>
 <p>Raises an exception if there was an attempt to access a non-existing line
 in a file.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="fpyutils.NegativeLineRangeError">
+<em class="property">exception </em><code class="descclassname">fpyutils.</code><code class="descname">NegativeLineRangeError</code><a class="headerlink" href="#fpyutils.NegativeLineRangeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Line range does not make sense.</p>
 </dd></dl>
 
 </div>
